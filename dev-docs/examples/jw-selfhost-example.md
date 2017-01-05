@@ -22,20 +22,18 @@ player_notes:
 - For this example we will be using method 3, a self-hosted player and JW Platform hosted content. To see an example using the cloud-hosted player, click <a href="#">here</a>.
 - No matter what embedding method you choose to use, you must follow the <b>custom embed</b> instructions. You cannot use the single-line embed.
 
-jsfiddle_link: jsfiddle.net/shirleylberry/zt70zj9z/2/embedded/html/
-
+jsfiddle_link: jsfiddle.net/shirleylberry/357yaqgc/embedded/html/
 code_lines: 142
 code_height: 3000
 
-pid: 15
+pid: 19
 ---
 <br><br><br>
-<br><br><br>
-<br><br><br>
-<!-- <div markdown="1">
-#### Line 12 to 15: Pre-define invokeVideoPlayer
-invokeVideoPlayer is called when all the bids are returned from prebid. Defining invokeVideoPlayer at the start of the page ensures that this function will always be defined, and we will always be storing the url of the vast tag, regardless of the timing of the rest of the page. 
-</div> -->
+<br>
+<div markdown="1">
+#### Line 9 to 12: Include your self-hosted JW Player code and license key
+Load the JW Player script. Open another script tag and define your license key. Replace `abcdefghijkl` with your own license key for an account that has advertising enabled. You can find your license key in your dashboard by going to Tools (found under the Players section) and scrolling to Downloads to find JW Player 7 (Self-Hosted).
+</div>
 <br><br><br>
 <br><br><br>
 <br><br><br>
@@ -73,23 +71,22 @@ Once all the bids are back, call invokeVideoPlayer and pass in the url. This wil
 <br><br><br>
 <br><br><br>
 <br><br><br>
-<br><br>
-<div markdown="1">
-#### Line 110: Include the player library
-The script tag for your cloud-hosted video player can be found in your JW Platform account on the player's page, under 'Cloud Player Library URL'. The player will use the settings you define in JW Platform unless you override them on the page in the setup call.
-</div>
 <br><br><br>
-<br>
+<br><br><br>
+<br><br><br>
 <div markdown="1">
-#### Line 121: Get a reference to the player instance
-Get a reference to the player by calling `jwplayer()` and passing in the id of the div you want to render the player in. This does not mean that the player will show up on the page, just that we can now use the player api on it.
+#### Line 119: Get a reference to the player instance
+Get a reference to the player by calling `jwplayer()` and passing in the id of the div you want to load the player into.
 </div>
 <br>
 <div markdown="1">
-#### Line 124 to 129: Call setup on the player and enable advertising
-Call `setup()` on the player instance and pass in the settings as a json object. The settings must include an advertising block with the client we want to use in order to play an ad. 
+#### Line 129 to 136: Call setup on the player instance
+Call `setup()` on the player instance with the settings you want. We need to pass in a media file and an advertising block with a `client` defined.
 </div>
-<br>
+<div markdown="1">
+#### Line 126 to 128: Pass in Advertising
+We must pass in an `"advertising"` block in our settings in order to enable advertising for this player. We can also specify the tag or an ad schedule here but for this demo we'll insert the tag dynamically before the content plays.
+</div>
 <div markdown="1">
 #### Line 131 to 133: Play a prebid ad as a preroll
 Before the player begins to play the content video, play an ad.
