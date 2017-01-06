@@ -78,8 +78,8 @@ Define the settings you want for your player in a JSON object. This object will 
 <br>
 <div markdown="1">
 #### Line 132 to 137: Add the ad paramters to the player settings
-Create a new JSON object in the player parameters. The key should be the ads plugin. 
-Make sure you follow correct [JSON formatting](http://www.w3schools.com/js/js_json_syntax.asp) as you add the ad parameters.
+Create a new JSON object in the player parameters. The key should be the ads plugin you're using (in our case we're using the Google IMA3 plugin). Inside the JSON object, you can specify an array of many ads (as we're done here), or a single ad tag. You must specify at least one tag_url. 
+<p>Make sure you follow correct [JSON formatting](http://www.w3schools.com/js/js_json_syntax.asp) as you add the ad parameters.</p>
 </div>
 <br><br><br>
 <br><br><br>
