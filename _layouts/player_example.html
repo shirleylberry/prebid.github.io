@@ -28,6 +28,17 @@
                 </li>
               {% endfor %}
 
+              <!-- <h5>Player Examples</h5>
+              {% assign player_example_pages = (site.pages | where: "layout", "player_example") | sort: "pid" %}
+
+              {% for pepage in player_example_pages %}
+                <li>
+                  <a href="{{ pepage.url }}">{{ pepage.title }}</a>
+                  {% if pepage.is_beta %}
+                    <span class="label label-warning">Beta</span>
+                  {% endif %}
+                </li>
+              {% endfor %} -->
             </ul>
             <!-- </div> -->
         </div>
@@ -47,6 +58,8 @@
           <li>Please refer to the <a href="{{page.why_link}}" target="_blank">product feature launch notes</a>.</li>
         </ul>
       {% endif %}
+      <p>This page is an example of using prebid video with a specific player. For a general guide to using video in prebid, click <a href="prebid.org/dev-docs/show-video-with-a-dfp-video-tag.html">here.</a></p>
+      <br>
 
       <h4>This page contains:</h4>
 
