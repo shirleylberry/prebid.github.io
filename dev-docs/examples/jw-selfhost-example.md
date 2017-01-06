@@ -11,7 +11,7 @@ beta: true
 
 about:
 - Setting up JW Player to dynamically play ads.
-- Using a cloud-hosted player.
+- Using a self-hosted player.
 - Create a masterVideoTag and pass it to invokeVideoPlayer.
 - Use invokeVideoPlayer to set up and access the JW Player instance.
 - Dynamically insert a preroll ad into JW Player.
