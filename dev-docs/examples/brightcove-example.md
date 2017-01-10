@@ -61,17 +61,16 @@ Load the ima3 css file to ensure the ad displays correctly in the player.
 <br><br><br>
 <br><br><br>
 <br><br><br>
-<br><br><br>
+<br><br>
 <div markdown="1">
 #### Line 74: Create video element
 Create your video element. You can copy paste this from the embed code in Video Cloud. Add an id tag to your player so that we can get a reference to it later. 
 </div>
-<br><br><br>
+<br><br>
 <div markdown="1">
 #### Line 74: Include player script
 Link to the player script from Brightcove. This will also be part of the embed code provided by Video Cloud.
 </div>
-<br>
 <div markdown="1">
 #### Line 74: Include ima3 plugin script
 Link to the ima3 plugin. Since we are not configuring the plugin in Video Cloud, we need to include this script on the page. 
