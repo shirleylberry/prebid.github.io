@@ -20,7 +20,7 @@ player_notes:
 
 jsfiddle_link: jsfiddle.net/shirleylberry/hxzue5eu/embedded/html/
 
-code_lines: 156
+code_lines: 154
 code_height: 3350
 
 pid: 34
@@ -30,7 +30,7 @@ pid: 34
 <br><br>
 <div markdown="1">
 #### Line 7 to 22: Load Player Scripts
-Load the Ooyla player scripts you plan to use. You must load the core player script, and the scripts for whatever video formats you want to support. The scripts themselvs and a guide for choosing which ones you need can be found [here](http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html).
+Load the Ooyla player scripts you plan to use. You must load the core player script, the scripts for whatever video formats you want to support, and the scripts for the ad manager you want to use. The scripts themselves and a guide for choosing which ones you need can be found [here](http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html).
 </div>
 <br><br><br>
 <br><br><br>
@@ -70,29 +70,21 @@ Load the Ooyla player scripts you plan to use. You must load the core player scr
 <br><br><br>
 <br><br><br>
 <br><br><br>
-<br><br>
+<br>
 <div markdown="1">
 #### Line 126 to 140: Define player settings
-Define the settings you want for your player in a JSON object. This object will be part of the embed code you copy paste from Ooyala Backlot.
+Define the settings you want for your player in a JSON object. Most of these lines will be part of the embed code you copy paste from Ooyala Backlot.
 </div>
 <br>
 <div markdown="1">
-#### Line 132 to 137: Add the ad paramters to the player settings
-Create a new JSON object in the player parameters. The key should be the ads plugin you're using (in our case we're using the Google IMA3 plugin). Inside the JSON object, you can specify an array of many ads (as we're done here), or a single ad tag. You must specify at least one tag_url. 
-<p>Make sure you follow correct [JSON formatting](http://www.w3schools.com/js/js_json_syntax.asp) as you add the ad parameters.</p>
+#### Line 132 to 137: Add the ad parameters to the player settings
+Create a new JSON object in the player parameters. The key should be the ad manager you're using (in our case we're using the [Google ima ads manager](http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html), so the key is `"google-ima-ads-manager"`). The ima ads manager requires an ad set (which we've named `"all_ads"`. 
+Make sure you follow proper [JSON formatting](http://www.w3schools.com/js/js_json_syntax.asp) as you add the ad parameters.
 </div>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
+<br><br>
 <div markdown="1">
-#### Line 130: Initialize the player
-Get a reference to the player by calling `videojs()` and passing in your player's ID. Set its `src` to the content video you want to play.
-</div>
-<br>
-<div markdown="1">
-#### Line 136 to 138: Play the ad
-Once the player's IMA3 plugin has loaded, use the plugin to play an ad as a preroll by calling `adrequest()` and passing in the url from prebid.
+#### Line 141 to 143: Initialize the player
+Use the `OO.ready()` event to make sure that all the necessary Ooyala plugins have loaded before creating the player. Once it has, call `create()` and pass in the div you're creating the player in, the ID of the content video, and the player settings we created above.
 </div>
 
 
