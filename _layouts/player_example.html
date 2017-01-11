@@ -13,35 +13,9 @@
           </div>
 
           <div class="col-md-6">
-            <h5>All Examples</h5>
-
-            <ul id="example-tab">
-
-              {% assign example_pages = (site.pages | where: "layout", "example") | sort: "pid" %}
-
-              {% for epage in example_pages %}
-                <li>
-                  <a href="{{ epage.url }}">{{ epage.title }}</a>
-                  {% if epage.is_beta %}
-                    <span class="label label-warning">Beta</span>
-                  {% endif %}
-                </li>
-              {% endfor %}
-
-              <!-- <h5>Player Examples</h5>
-              {% assign player_example_pages = (site.pages | where: "layout", "player_example") | sort: "pid" %}
-
-              {% for pepage in player_example_pages %}
-                <li>
-                  <a href="{{ pepage.url }}">{{ pepage.title }}</a>
-                  {% if pepage.is_beta %}
-                    <span class="label label-warning">Beta</span>
-                  {% endif %}
-                </li>
-              {% endfor %} -->
-            </ul>
+            {% include example_tab.html %}
             <!-- </div> -->
-        </div>
+          </div>
       </div>
     </div>
   </div>
@@ -82,7 +56,7 @@
       <br>
       <p>
 
-        Click <strong>Edit in JSFiddle</strong> to open the example in a new tab.
+        Click <strong>Edit in JSFiddle</strong> to open the example in a new tab. Click <a href="{{page.demo_link}}">here</a> to view a demo page with this example.
 
       </p>
 
@@ -124,7 +98,6 @@
 
 <td>
 
-
 <iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 </td>
@@ -142,6 +115,7 @@
 {{content}}
 
 </div>
+<br><br>
 
 </div>
 
