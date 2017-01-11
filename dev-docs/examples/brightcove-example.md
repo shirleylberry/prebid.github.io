@@ -32,14 +32,14 @@ pid: 32
 Load the ima3 css file to ensure the ad displays correctly in the player.
 </div>
 
-<div markdown="1" style="top:325px" class="pl-doc-entry">
+<div markdown="1" style="top:300px" class="pl-doc-entry">
 #### Line 15 to 18: Pre-define `invokeVideoPlayer`
-Because we have no way of knowing when all the bids will be returned from prebid it isn't guaranteed that the browser will reach the end of the page before bidsBackHandler fires tries to call `invokeVideoPlayer`. To prevent this, we define it at the very top of the page, before we make the call to prebid, and redefine it later on with the code to create the player and play the ad. In this first version it simply stores the winning vast to use later.
+Because we have no way of knowing when all the bids will be returned from prebid we can't be sure that the browser will reach the point where `invokeVideoPlayer` is defined before bidsBackHandler fires and tries to call it. To prevent a `invokeVideoPlayer not defined` error, we pre-define it before we make the call to prebid, and redefine it later on with the code to create the player and play the ad. In this first version it simply stores the winning vast to use later.
 </div>
 
 <div markdown="1" style="top:550px" class="pl-doc-entry">
 #### Line 20 to 36: Create a video ad unit
-Create a video ad unit. Make sure you include the `mediaType: 'video'` and replace the `placementId` with your own valid placement ID.
+Create a video ad unit to request bids for. The `code` is the name we'll use to refer to this ad unit throughout the prebid code. Make sure you include the `mediaType: 'video'` and replace the `placementId` with your own valid placement ID.
 </div>
 
 <div markdown="1" style="top:1000px" class="pl-doc-entry">
@@ -49,17 +49,17 @@ Log information about the bids to the console, including whether any bids were r
 
 <div markdown="1" style="top:1225px" class="pl-doc-entry">
 #### Line 57 to 75: Add the ad units and request bids
-Add the ad units you want to request bids for to prebid, and then call `requestBids()`, passing in a json object. In the json object, define a callback that will run once all the bids are returned.
+Add the ad units you want to request bids for to prebid, and then call `requestBids()`, passing in a json object. In the json object, define the `bidsBackHandler` callback which will run once all the bids are returned.
 </div>
 
 <div markdown="1" style="top:1400px" class="pl-doc-entry">
-#### Line 62 to 69: Build masterVideoTag and Call invokeVideoPlayer
-Once we have the bids back, the `bidsBackHandler` will be called. Inside this callback, we create the masterVideoTag and pass it into the video player by calling `invokeVideoPlayer()`.
+#### Line 62 to 69: Build masterVideoTag and call invokeVideoPlayer
+Once we have the bids back, `bidsBackHandler` will be called. Inside this callback, we create the masterVideoTag and pass it to the video player by calling `invokeVideoPlayer()`.
 </div>
 
 <div markdown="1" style="top:2475px" class="pl-doc-entry">
 #### Line 113 to 122: Create video element
-Create your video element. You can copy paste this from the embed code in Video Cloud. Add an id tag to the player so that we can get a reference to it later. 
+Create your video element. You can copy paste this from the embed code in Video Cloud. Add an id tag to the player element - this is what we'll use to reference the player later.
 </div>
 
 <div markdown="1" style="top:2600px" class="pl-doc-entry">
@@ -69,7 +69,7 @@ First, include the player script from Brightcove. This will also be part of the 
 
 <div markdown="1" style="top:2700px" class="pl-doc-entry">
 #### Line 129 to 146: Redefine invokeVideoPlayer
-Redefine `invokeVideoPlayer` and pass in the vast url we got back from prebid. We'll use this url in our ima3 plugin configuration.
+Redefine `invokeVideoPlayer` to replace the temporary one we defined above. Now, `invokeVideoPlayer` will take in the winning url, create the player, and play the ad.
 </div>
 
 <div markdown="1" style="top:2775px" class="pl-doc-entry">
@@ -88,6 +88,6 @@ Call `videojs` and pass in the id of the video element to get a reference to the
 </div>
 
 <div markdown="1" style="top:3125px" class="pl-doc-entry">
-#### Line 148 to 151: Account for page speed issues
-If prebid returned bids before the browser reached the end of the page, the winning vast tag will be stored in tempTag. If that's the case, we want to call the new version of `invokeVideoPlayer` with the stored url.
+#### Line 148 to 151: Account for page speed
+If prebid returned bids before the browser reached the end of the page, the first version of `invokeVideoPlayer` will have been called from `bidsBackHandler` so the winning vast tag will be stored in tempTag. If that's the case, we want to call the 'real' version of `invokeVideoPlayer` with the stored url to create the player and play the ad. If `tempTag` is not defined, that means the browser reached the end of the page before the bids came back from prebid, meaning the 'real' version of `invokeVideoPlayer` was already called.
 </div>
