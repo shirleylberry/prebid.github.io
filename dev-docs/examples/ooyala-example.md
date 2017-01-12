@@ -33,27 +33,27 @@ Load the Ooyla player scripts you plan to use. You must load the core player scr
 </div>
 
 <div markdown="1" style="top:550px" class="pl-doc-entry">
-#### Line 15 to 18: Pre-define `invokeVideoPlayer`
+#### Line 27 to 30: Pre-define `invokeVideoPlayer`
 Because we have no way of knowing when all the bids will be returned from prebid we can't be sure that the browser will reach the point where `invokeVideoPlayer` is defined before bidsBackHandler fires and tries to call it. To prevent a `invokeVideoPlayer not defined` error, we pre-define it before we make the call to prebid, and redefine it later on with the code to create the player and play the ad. In this first version it simply stores the winning vast to use later.
 </div>
 
 <div markdown="1" style="top:900px" class="pl-doc-entry">
-#### Line 20 to 36: Create a video ad unit
+#### Line 36 to 50: Create a video ad unit
 Create a video ad unit to request bids for. The `code` is the name we'll use to refer to this ad unit throughout the prebid code. Make sure you include the `mediaType: 'video'` and replace the `placementId` with your own valid placement ID.
 </div>
 
 <div markdown="1" style="top:1200px" class="pl-doc-entry">
-#### Line 38 to 54: Log the bids for debugging
+#### Line 52 to 68: Log the bids for debugging
 Log information about the bids to the console, including whether any bids were returned. This isn't strictly necessary, but is useful for debugging.
 </div>
 
 <div markdown="1" style="top:1550px" class="pl-doc-entry">
-#### Line 57 to 75: Add the ad units and request bids
+#### Line 70 to 89: Add the ad units and request bids
 Add the ad units you want to request bids for to prebid, and then call `requestBids()`, passing in a json object. In the json object, define the `bidsBackHandler` callback which will run once all the bids are returned.
 </div>
 
 <div markdown="1" style="top:1725px" class="pl-doc-entry">
-#### Line 62 to 69: Build masterVideoTag and call invokeVideoPlayer
+#### Line 76 to 86: Build masterVideoTag and call invokeVideoPlayer
 Once we have the bids back, `bidsBackHandler` will be called. Inside this callback, we create the masterVideoTag and pass it to the video player by calling `invokeVideoPlayer()`.
 </div>
 
