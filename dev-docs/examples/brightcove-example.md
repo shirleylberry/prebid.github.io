@@ -84,7 +84,7 @@ Next pass in a json object of options to the player's ima3 plugin. The `url` we 
 
 <div markdown="1" style="top:2975px" class="pl-doc-entry">
 #### Line 120 to 126: Add a `ready` listener and interact with the player
-Call `videojs` and pass in the id of the video element to get a reference to the player. Call `.ready` on the player to set up the event listener, and place any code that will interact with the player inside the callback (such as logging events for the player or ads).
+Call `videojs()` and pass in the id of the video element to get a reference to the player. Call `.ready` on the player to set up the event listener, and place any code that will interact with the player inside the callback (such as logging events for the player or ads).
 </div>
 
 <div markdown="1" style="top:3125px" class="pl-doc-entry">

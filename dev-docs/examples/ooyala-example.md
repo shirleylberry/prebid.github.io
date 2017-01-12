@@ -19,72 +19,63 @@ player_notes:
 - Do not select an ad set in the 'Monetize' tab. We'll control that setting on the page.
 
 jsfiddle_link: jsfiddle.net/shirleylberry/hxzue5eu/embedded/html/
+demo_link: video-demo.appnexus.com/pbjs/ooyala-prebid/ooyala-demo.html
 
 code_lines: 154
 code_height: 3350
 
 pid: 34
 ---
-<br><br><br>
-<br><br><br>
-<br><br>
-<div markdown="1">
+
+<div markdown="1" style="top:200px" class="pl-doc-entry">
 #### Line 7 to 22: Load Player Scripts
 Load the Ooyla player scripts you plan to use. You must load the core player script, the scripts for whatever video formats you want to support, and the scripts for the ad manager you want to use. The scripts themselves and a guide for choosing which ones you need can be found [here](http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html).
 </div>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<br>
-<div markdown="1">
-#### Line 126 to 140: Define player settings
-Define the settings you want for your player in a JSON object. Most of these lines will be part of the embed code you copy paste from Ooyala Backlot.
+
+<div markdown="1" style="top:550px" class="pl-doc-entry">
+#### Line 15 to 18: Pre-define `invokeVideoPlayer`
+Because we have no way of knowing when all the bids will be returned from prebid we can't be sure that the browser will reach the point where `invokeVideoPlayer` is defined before bidsBackHandler fires and tries to call it. To prevent a `invokeVideoPlayer not defined` error, we pre-define it before we make the call to prebid, and redefine it later on with the code to create the player and play the ad. In this first version it simply stores the winning vast to use later.
 </div>
-<br>
-<div markdown="1">
+
+<div markdown="1" style="top:900px" class="pl-doc-entry">
+#### Line 20 to 36: Create a video ad unit
+Create a video ad unit to request bids for. The `code` is the name we'll use to refer to this ad unit throughout the prebid code. Make sure you include the `mediaType: 'video'` and replace the `placementId` with your own valid placement ID.
+</div>
+
+<div markdown="1" style="top:1200px" class="pl-doc-entry">
+#### Line 38 to 54: Log the bids for debugging
+Log information about the bids to the console, including whether any bids were returned. This isn't strictly necessary, but is useful for debugging.
+</div>
+
+<div markdown="1" style="top:1550px" class="pl-doc-entry">
+#### Line 57 to 75: Add the ad units and request bids
+Add the ad units you want to request bids for to prebid, and then call `requestBids()`, passing in a json object. In the json object, define the `bidsBackHandler` callback which will run once all the bids are returned.
+</div>
+
+<div markdown="1" style="top:1725px" class="pl-doc-entry">
+#### Line 62 to 69: Build masterVideoTag and call invokeVideoPlayer
+Once we have the bids back, `bidsBackHandler` will be called. Inside this callback, we create the masterVideoTag and pass it to the video player by calling `invokeVideoPlayer()`.
+</div>
+
+<div markdown="1" style="top:2625px" class="pl-doc-entry">
+#### Line 126 to 140: Define player settings
+Define the settings you want for your player in a JSON object. These lines will be part of the embed code you copy paste from Ooyala Backlot, we just need to ad the ad parameters.
+</div>
+
+<div markdown="1" style="top:2750px" class="pl-doc-entry">
 #### Line 132 to 137: Add the ad parameters to the player settings
 Create a new JSON object in the player parameters. The key should be the ad manager you're using (in our case we're using the [Google ima ads manager](http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html), so the key is `"google-ima-ads-manager"`). The ima ads manager requires an ad set (which we've named `"all_ads"`. 
 Make sure you follow proper [JSON formatting](http://www.w3schools.com/js/js_json_syntax.asp) as you add the ad parameters.
 </div>
-<br><br>
-<div markdown="1">
+
+<div markdown="1" style="top:2950px" class="pl-doc-entry">
 #### Line 141 to 143: Initialize the player
-Use the `OO.ready()` event to make sure that all the necessary Ooyala plugins have loaded before creating the player. Once it has, call `create()` and pass in the div you're creating the player in, the ID of the content video, and the player settings we created above.
+Use the `OO.ready()` event to make sure that all the necessary Ooyala plugins have loaded before attempting to create the player. Once it has, call `create()` and pass in the div you're creating the player in, the ID of the content video, and the player settings we created above.
+</div>
+
+<div markdown="1" style="top:3075px" class="pl-doc-entry">
+#### Line 134 to 137: Account for page speed
+If prebid returned bids before the browser reached the end of the page, the first version of `invokeVideoPlayer` will have been called from `bidsBackHandler` so the winning vast tag will be stored in tempTag. If that's the case, we want to call the 'real' version of `invokeVideoPlayer` with the stored url to create the player and play the ad. If `tempTag` is not defined, that means the browser reached the end of the page before the bids came back from prebid, meaning the 'real' version of `invokeVideoPlayer` was already called.
 </div>
 
 
