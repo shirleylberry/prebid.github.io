@@ -23,10 +23,10 @@ player_notes:
 - No matter what embedding method you choose to use, you must follow the <b>custom embed</b> instructions. You cannot use the single-line embed.
 
 jsfiddle_link: jsfiddle.net/shirleylberry/357yaqgc/embedded/html/
-demo_link: video-demo.appnexus.com/pbjs/JWPlayerDemo/jwPlayerPrebid.html
+demo_link: http://video-demo.appnexus.com/pbjs/JWPlayerDemo/jwPlayerPrebid.html
 
-code_lines: 142
-code_height: 3000
+code_lines: 141
+code_height: 3050
 
 pid: 31
 ---
