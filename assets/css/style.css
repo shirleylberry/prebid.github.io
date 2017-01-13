@@ -331,7 +331,7 @@ div.pl-doc-entry{
   position: absolute;
 }
 
-table {
+table:not(.jsfiddle-line-number) {
     table-layout: fixed;
     word-wrap: break-word;
 }
