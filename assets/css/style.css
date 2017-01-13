@@ -326,3 +326,11 @@ table.jsfiddle-line-number .line-number {
 #example-tab li {
   margin-bottom: 6px;
 }
+
+div.pl-doc-entry{
+  position: absolute;
+}
+/*
+div.player-warning{
+  
+}*/
