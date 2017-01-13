@@ -73,17 +73,17 @@ Redefine `invokeVideoPlayer` to replace the temporary one we defined above. Now,
 </div>
 
 <div markdown="1" style="top:2775px" class="pl-doc-entry">
-#### Line 111: Use bc to reference the video player
+#### Line 130: Use bc to reference the video player
 The first time we reference the player, we use the `bc()` method to ensure that all the player scripts have loaded before we add the video element to the dom or interact with it.
 </div>
 
 <div markdown="1" style="top:2850px" class="pl-doc-entry">
-#### Line 111 to 118: Pass options into the ima3 plugin
+#### Line 130 to 137: Pass options into the ima3 plugin
 Next pass in a json object of options to the player's ima3 plugin. The `url` we passed into `invokeVideoPlayer` will be the `serverUrl` we pass into the plugin.
 </div>
 
 <div markdown="1" style="top:2975px" class="pl-doc-entry">
-#### Line 120 to 126: Add a `ready` listener and interact with the player
+#### Line 139 to 145: Add a `ready` listener and interact with the player
 Call `videojs()` and pass in the id of the video element to get a reference to the player. Call `.ready` on the player to set up the event listener, and place any code that will interact with the player inside the callback (such as logging events for the player or ads).
 </div>
 
