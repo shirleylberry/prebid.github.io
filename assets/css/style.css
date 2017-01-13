@@ -330,7 +330,8 @@ table.jsfiddle-line-number .line-number {
 div.pl-doc-entry{
   position: absolute;
 }
-/*
-div.player-warning{
-  
-}*/
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
