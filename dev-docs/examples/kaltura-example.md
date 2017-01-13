@@ -51,22 +51,27 @@ Add the ad units you want to request bids for to prebid, and then call `requestB
 Once we have the bids back, `bidsBackHandler` will be called. Inside this callback, we create the masterVideoTag and pass it to the video player by calling `invokeVideoPlayer()`.
 </div>
 
-<div markdown="1" style="top:2200px" class="pl-doc-entry">
-#### Line 112 to 128: Embed the Kaltura Player
-Call `kWidget.embed()` and pass in a JSON object of your player settings. 
+<div markdown="1" style="top:2250px" class="pl-doc-entry">
+#### Line 112 to 128: Include Kaltura player script
+Add the script for your Kaltura player. This will be part of the code you will copy paste from Kaltura.
 </div>
 
-<div markdown="1" style="top:2500px" class="pl-doc-entry">
+<div markdown="1" style="top:2375px" class="pl-doc-entry">
+#### Line 112 to 128: Embed the Kaltura Player
+Call `kWidget.embed()` and pass in a JSON object of your player settings. Most of this JSON object will be part of the code you will copy paste from Kaltura.
+</div>
+
+<div markdown="1" style="top:2475px" class="pl-doc-entry">
 #### Line 118 to 121: Add vast settings to the player settings
 Inside the `flashVars`, add another key called `"vast"` and pass in a JSON object with the position you want to play your ad, and the url of the ad, which in this case will be the `url` we got back from prebid.
 </div>
 
-<div markdown="1" style="top:2600px" class="pl-doc-entry">
+<div markdown="1" style="top:2625px" class="pl-doc-entry">
 #### Line 124 to 127: Add a ready callback and get a reference to the player
 Add a ready callback to the player settings. This allows us to get a reference to the player, stored in the variable `kdp` in order to interact with it later.
 </div>
 
-<div markdown="1" style="top:2800px" class="pl-doc-entry">
+<div markdown="1" style="top:2750px" class="pl-doc-entry">
 #### Line 131 to 134: Account for page speed
 If prebid returned bids before the browser reached the end of the page, the first version of `invokeVideoPlayer` will have been called from `bidsBackHandler` so the winning vast tag will be stored in tempTag. If that's the case, we want to call the 'real' version of `invokeVideoPlayer` with the stored url to create the player and play the ad. If `tempTag` is not defined, that means the browser reached the end of the page before the bids came back from prebid, meaning the 'real' version of `invokeVideoPlayer` was already called.
 </div>

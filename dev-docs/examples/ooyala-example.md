@@ -10,19 +10,20 @@ hide: true
 beta: true
 
 about:
+- Including the correct scripts on the page. A guide can be found <a href="http://help.ooyala.com/video-platform/documentation/concepts/pbv4_plugins.html">here</a>.
 - Using the Ooyala v4 player API.
 - Using Ooyala's Google IMA plugin.
 - Passing a vast tag to the Ooyala player.
 
 player_notes:
-- This guide uses the V4 Ooyala player. To get the embed code for the V4 player, select <b>New Ooyala Played (V4) Embed Code</b> in the embed options instead of HTML Embed Code. 
+- This guide uses the V4 Ooyala player. To get the embed code for the V4 player, select <b>New Ooyala Player (V4) Embed Code</b> in the embed options instead of HTML Embed Code. 
 - Do not select an ad set in the 'Monetize' tab. We'll control that setting on the page.
 
 jsfiddle_link: jsfiddle.net/shirleylberry/hxzue5eu/embedded/html/
 demo_link: video-demo.appnexus.com/pbjs/ooyala-prebid/ooyala-demo.html
 
 code_lines: 154
-code_height: 3350
+code_height: 3300
 
 pid: 34
 ---
@@ -57,12 +58,12 @@ Add the ad units you want to request bids for to prebid, and then call `requestB
 Once we have the bids back, `bidsBackHandler` will be called. Inside this callback, we create the masterVideoTag and pass it to the video player by calling `invokeVideoPlayer()`.
 </div>
 
-<div markdown="1" style="top:2625px" class="pl-doc-entry">
+<div markdown="1" style="top:2675px" class="pl-doc-entry">
 #### Line 126 to 140: Define player settings
-Define the settings you want for your player in a JSON object. These lines will be part of the embed code you copy paste from Ooyala Backlot, we just need to ad the ad parameters.
+Define the settings you want for your player in a JSON object. These lines will be part of the embed code you copy paste from Ooyala Backlot, we just need to add the ad parameters.
 </div>
 
-<div markdown="1" style="top:2750px" class="pl-doc-entry">
+<div markdown="1" style="top:2800px" class="pl-doc-entry">
 #### Line 132 to 137: Add the ad parameters to the player settings
 Create a new JSON object in the player parameters. The key should be the ad manager you're using (in our case we're using the [Google ima ads manager](http://help.ooyala.com/video-platform/concepts/pbv4_ads_dev_google_ima.html), so the key is `"google-ima-ads-manager"`). The ima ads manager requires an ad set (which we've named `"all_ads"`. 
 Make sure you follow proper [JSON formatting](http://www.w3schools.com/js/js_json_syntax.asp) as you add the ad parameters.
